@@ -5,14 +5,13 @@ import io.github.Pssales.projetoBD.model.ProdutoQuimico;
 
 public class Main {
 
-	public static void main(String[] args) {
-		ProdutoQuimicoDAO pqDAO = new ProdutoQuimicoDAO();
-		
-		ProdutoQuimico pq = new ProdutoQuimico();
-		pq.setNomeComercial("asdasd");
-		pqDAO.persist(pq);
-		
-		
-	}
+    public static void main(String[] args) {
+        ProdutoQuimicoDAO pqDAO = new ProdutoQuimicoDAO();
+
+        ProdutoQuimico pq = new ProdutoQuimico();
+        pq.setNomeComercial("asdasd");
+        pqDAO.persist(pq);
+
+    }
 
 }

@@ -5,7 +5,10 @@
     <persistence-unit name="hibernate-example" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
-        <class>io.github.lucasvenez.produtosquimicos.model.ProdutoQuimico</class>
+        <class>io.github.Pssales.projetoBD.model.Sexo</class>        
+        <class>io.github.Pssales.projetoBD.model.Nivel</class>
+        <class>io.github.Pssales.projetoBD.model.Pessoa</class>
+
         
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
