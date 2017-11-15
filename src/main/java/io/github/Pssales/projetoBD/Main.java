@@ -9,7 +9,7 @@ public class Main {
         ProdutoQuimicoDAO pqDAO = new ProdutoQuimicoDAO();
 
         ProdutoQuimico pq = new ProdutoQuimico();
-        pq.setNomeComercial("asdasd");
+        pq.setNomeComercial("teste");
         pqDAO.persist(pq);
 
     }
