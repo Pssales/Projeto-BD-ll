@@ -5,10 +5,28 @@
  */
 package io.github.Pssales.projetoBD.dao;
 
+import io.github.Pssales.projetoBD.views.Servidor;
+import java.util.List;
+
 /**
  *
  * @author Camila
  */
-public class ServidorDAO {
+public class ServidorDAO extends DAO<Servidor>{
+
+    @Override
+    public List<Servidor> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Servidor getById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

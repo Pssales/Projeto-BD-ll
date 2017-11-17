@@ -5,10 +5,28 @@
  */
 package io.github.Pssales.projetoBD.dao;
 
+import io.github.Pssales.projetoBD.model.Usuario;
+import java.util.List;
+
 /**
  *
  * @author Camila
  */
-public class UsuarioDAO {
+public class UsuarioDAO extends DAO<Usuario>{
+
+    @Override
+    public List<Usuario> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario getById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

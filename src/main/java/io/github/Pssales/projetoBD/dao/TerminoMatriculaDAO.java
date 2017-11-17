@@ -5,10 +5,28 @@
  */
 package io.github.Pssales.projetoBD.dao;
 
+import io.github.Pssales.projetoBD.model.TerminoMatricula;
+import java.util.List;
+
 /**
  *
  * @author Camila
  */
-public class TerminoMatriculaDAO {
+public class TerminoMatriculaDAO extends DAO<TerminoMatricula>{
+
+    @Override
+    public List<TerminoMatricula> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public TerminoMatricula getById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

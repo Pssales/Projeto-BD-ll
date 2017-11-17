@@ -9,6 +9,24 @@ package io.github.Pssales.projetoBD.dao;
  *
  * @author Camila
  */
-public class StatusDAO {
+import io.github.Pssales.projetoBD.model.Status;
+import java.util.List;
+
+public class StatusDAO extends DAO<Status>{
+
+    @Override
+    public List<Status> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Status getById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
