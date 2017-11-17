@@ -5,10 +5,28 @@
  */
 package io.github.Pssales.projetoBD.dao;
 
+import io.github.Pssales.projetoBD.model.Documento;
+import java.util.List;
+
 /**
  *
  * @author Camila
  */
-public class DocumentoDAO {
+public class DocumentoDAO extends DAO<Documento>{
+
+    @Override
+    public List<Documento> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Documento getById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

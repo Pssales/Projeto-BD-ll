@@ -5,10 +5,28 @@
  */
 package io.github.Pssales.projetoBD.dao;
 
+import io.github.Pssales.projetoBD.model.Aluno;
+import java.util.List;
+
 /**
  *
  * @author Camila
  */
-public class AlunoDAO {
+public class AlunoDAO extends DAO<Aluno>{
+
+    @Override
+    public List<Aluno> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Aluno getById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
