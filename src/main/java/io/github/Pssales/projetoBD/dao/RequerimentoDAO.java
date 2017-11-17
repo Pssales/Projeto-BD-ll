@@ -2,13 +2,13 @@ package io.github.Pssales.projetoBD.dao;
 
 import java.util.List;
 
-import io.github.Pssales.projetoBD.model.ProdutoQuimico;
+import io.github.Pssales.projetoBD.model.Requerimento;
 
 
-public class ProdutoQuimicoDAO extends DAO<ProdutoQuimico> {
+public class RequerimentoDAO extends DAO<Requerimento> {
 
-	public ProdutoQuimico getById(final Long id) {
-        return entityManager.find(ProdutoQuimico.class, id);
+	public Requerimento getById(final Long id) {
+        return entityManager.find(Requerimento.class, id);
     }
  
     public boolean removeById(final Long id) {
@@ -16,7 +16,7 @@ public class ProdutoQuimicoDAO extends DAO<ProdutoQuimico> {
     	boolean result = true;
     	
         try {
-        	ProdutoQuimico product = this.getById(id);
+        	Requerimento product = this.getById(id);
             super.remove(product);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -27,7 +27,7 @@ public class ProdutoQuimicoDAO extends DAO<ProdutoQuimico> {
     }
  
     @SuppressWarnings("unchecked")
-	public List<ProdutoQuimico> findAll() {
+	public List<Requerimento> findAll() {
     	return entityManager
     		.createQuery("FROM Product").getResultList();
     }

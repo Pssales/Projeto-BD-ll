@@ -5,7 +5,9 @@
  */
 package io.github.Pssales.projetoBD.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -13,7 +15,8 @@ import javax.persistence.Id;
  *
  * @author Camila
  */
-public class Telefone {
+@Entity
+public class Telefone implements Serializable{
     @Id
     @GeneratedValue
     @Column

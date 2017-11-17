@@ -5,13 +5,15 @@
  */
 package io.github.Pssales.projetoBD.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
  *
  * @author Camila
  */
-public class TipoDocumento {
+@Entity
+public class TipoDocumento implements Serializable{
     @Id
     @GeneratedValue
     @Column

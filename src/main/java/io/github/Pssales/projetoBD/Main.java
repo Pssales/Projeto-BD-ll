@@ -1,15 +1,16 @@
 package io.github.Pssales.projetoBD;
 
-import io.github.Pssales.projetoBD.dao.ProdutoQuimicoDAO;
-import io.github.Pssales.projetoBD.model.ProdutoQuimico;
+import io.github.Pssales.projetoBD.dao.RequerimentoDAO;
+import io.github.Pssales.projetoBD.model.Requerimento;
 
 public class Main {
 
     public static void main(String[] args) {
-        ProdutoQuimicoDAO pqDAO = new ProdutoQuimicoDAO();
+        RequerimentoDAO pqDAO = new RequerimentoDAO();
 
-        ProdutoQuimico pq = new ProdutoQuimico();
-        pq.setNomeComercial("teste");
+        Requerimento pq = new Requerimento();
+        pq.setNome("teste");
+        pq.setPrazo(12);
         pqDAO.persist(pq);
 
     }

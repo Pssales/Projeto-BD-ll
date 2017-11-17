@@ -5,16 +5,21 @@
  */
 package io.github.Pssales.projetoBD.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Camila
  */
-public class Matricula {
+@Entity
+public class Matricula implements Serializable{
     @Id
     @GeneratedValue
     @Column
@@ -22,7 +27,10 @@ public class Matricula {
 
     @Column
     private String matricula;
+    @Column
+    @Temporal(TemporalType.DATE)
     private Date data_matricula;
+    @Column
     private Pessoa pessoa;
 
     public Integer getId() {

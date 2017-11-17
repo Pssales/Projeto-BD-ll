@@ -5,13 +5,16 @@
  */
 package io.github.Pssales.projetoBD.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
+import org.hibernate.engine.jdbc.SerializableBlobProxy;
 
 /**
  *
  * @author Camila
  */
-public class Requerimento {
+@Entity
+public class Requerimento implements Serializable {
     @Id
     @GeneratedValue
     @Column
@@ -19,6 +22,7 @@ public class Requerimento {
 
     @Column
     private String nome;
+    @Column
     private Integer prazo;
 
     public Integer getId() {

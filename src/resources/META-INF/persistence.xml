@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
-    version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="hibernate-example" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
-        <class>io.github.Pssales.projetoBD.model.Sexo</class>        
+        <class>io.github.Pssales.projetoBD.model.Aluno</class>        
+        <class>io.github.Pssales.projetoBD.model.AlunoRequerimento</class>
+        <class>io.github.Pssales.projetoBD.model.Documento</class>
+        <class>io.github.Pssales.projetoBD.model.Matricula</class>
         <class>io.github.Pssales.projetoBD.model.Nivel</class>
         <class>io.github.Pssales.projetoBD.model.Pessoa</class>
+        <class>io.github.Pssales.projetoBD.model.Requerimento</class>
+        <class>io.github.Pssales.projetoBD.model.Servidor</class>
+        <class>io.github.Pssales.projetoBD.model.Sexo</class>
+        <class>io.github.Pssales.projetoBD.model.Status</class>
+        <class>io.github.Pssales.projetoBD.model.Telefone</class>
+        <class>io.github.Pssales.projetoBD.model.TerminoMatricula</class>
+        <class>io.github.Pssales.projetoBD.model.TipoDocumento</class>
+        <class>io.github.Pssales.projetoBD.model.TipoTelefone</class>
+        <class>io.github.Pssales.projetoBD.model.Usuario</class>
 
         
         <properties>

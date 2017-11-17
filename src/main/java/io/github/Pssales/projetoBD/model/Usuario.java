@@ -5,7 +5,9 @@
  */
 package io.github.Pssales.projetoBD.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -13,7 +15,8 @@ import javax.persistence.Id;
  *
  * @author Camila
  */
-public class Usuario {
+@Entity
+public class Usuario implements Serializable{
 
     @Id
     @GeneratedValue
@@ -22,8 +25,11 @@ public class Usuario {
 
     @Column
     private Matricula matricula;
+    @Column
     private String usuario;
+    @Column
     private String senha;
+    @Column
     private Nivel nivel;
 
     public Integer getId() {
