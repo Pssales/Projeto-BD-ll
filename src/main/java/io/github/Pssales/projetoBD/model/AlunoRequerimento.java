@@ -15,6 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -33,9 +35,16 @@ public class AlunoRequerimento implements Serializable{
     @JoinColumn(name = "requerimento_id", referencedColumnName = "id")
     private Requerimento requerimento;
     
-    @Column
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id", nullable = false)
     private Status status;
+    
+    @Column
+    @Temporal(TemporalType.DATE)
     private Date data_requerimento;
+    
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "servidor_id", nullable = false)
     private Servidor servidor;
 
 }

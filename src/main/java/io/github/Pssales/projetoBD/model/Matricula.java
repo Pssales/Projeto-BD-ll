@@ -5,6 +5,7 @@
  */
 package io.github.Pssales.projetoBD.model;
 
+import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,7 +26,8 @@ import javax.persistence.TemporalType;
  * @author Camila
  */
 @Entity
-public class Matricula implements Serializable{
+public class Matricula implements Serializable {
+
     @Id
     @GeneratedValue
     @Column
@@ -38,6 +41,19 @@ public class Matricula implements Serializable{
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;
+
+    @OneToOne(mappedBy = "matricula")
+    @NotNull
+    private Aluno aluno;
+    @OneToOne(mappedBy = "matricula")
+    @NotNull
+    private Servidor servidor;
+    @OneToOne(mappedBy = "matricula")
+    @NotNull
+    private Usuario usuario;
+    @OneToOne(mappedBy = "matricula")
+    @NotNull
+    private TerminoMatricula terminoMatricula;
 
     public Integer getId() {
         return id;
@@ -70,5 +86,5 @@ public class Matricula implements Serializable{
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
+
 }

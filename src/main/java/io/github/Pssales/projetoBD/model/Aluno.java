@@ -5,25 +5,28 @@
  */
 package io.github.Pssales.projetoBD.model;
 
+import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Camila
  */
 @Entity
-public class Aluno implements Serializable{
+public class Aluno implements Serializable {
+
     @Id
     @GeneratedValue
     @Column
     private Integer id;
 
-    @Column
+    @OneToOne
     private Matricula matricula;
 
     public Integer getId() {
@@ -41,6 +44,5 @@ public class Aluno implements Serializable{
     public void setMatricula(Matricula matricula) {
         this.matricula = matricula;
     }
-    
-    
+
 }

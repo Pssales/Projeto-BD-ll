@@ -30,7 +30,8 @@ public class Documento implements Serializable {
 
     @Column
     private String numero;
-    @Column
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tipo_documento_id", nullable = false)
     private TipoDocumento tipoDocumento;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "documentos", nullable = false)
