@@ -6,18 +6,23 @@
 package io.github.Pssales.projetoBD.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Camila
  */
 @Entity
-public class Documento implements Serializable{
+public class Documento implements Serializable {
+
     @Id
     @GeneratedValue
     @Column
@@ -27,7 +32,8 @@ public class Documento implements Serializable{
     private String numero;
     @Column
     private TipoDocumento tipoDocumento;
-    @Column
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "documentos", nullable = false)
     private Pessoa pessoa;
 
     public Integer getId() {
@@ -61,6 +67,5 @@ public class Documento implements Serializable{
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
-    
+
 }

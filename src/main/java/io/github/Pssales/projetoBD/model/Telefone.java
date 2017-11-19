@@ -6,11 +6,15 @@
 package io.github.Pssales.projetoBD.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,7 +29,10 @@ public class Telefone implements Serializable{
 
     @Column
     private String numero;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;
+    
     private TipoTelefone tipoTelefone;
 
     public Integer getId() {
