@@ -15,19 +15,29 @@ import io.github.Pssales.projetoBD.model.Pessoa;
  */
 public class PessoaDAO extends DAO<Pessoa>{
 
-    @Override
+  public Pessoa getById(final Long id) {
+        return entityManager.find(Pessoa.class, id);
+    }
+
+    public boolean removeById(final Long id) {
+
+        boolean result = true;
+
+        try {
+            Pessoa product = this.getById(id);
+            super.remove(product);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
     public List<Pessoa> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Pessoa getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entityManager
+                .createQuery("FROM Pessoa").getResultList();
     }
     
 }

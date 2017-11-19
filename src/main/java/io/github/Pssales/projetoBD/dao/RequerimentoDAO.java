@@ -28,6 +28,6 @@ public class RequerimentoDAO extends DAO<Requerimento> {
     @SuppressWarnings("unchecked")
     public List<Requerimento> findAll() {
         return entityManager
-                .createQuery("FROM Product").getResultList();
+                .createQuery("FROM Requerimento").getResultList();
     }
 }

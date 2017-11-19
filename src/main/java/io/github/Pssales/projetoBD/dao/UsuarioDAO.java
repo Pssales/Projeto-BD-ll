@@ -15,19 +15,29 @@ import io.github.Pssales.projetoBD.model.Usuario;
  */
 public class UsuarioDAO extends DAO<Usuario>{
 
-    @Override
+  public Usuario getById(final Long id) {
+        return entityManager.find(Usuario.class, id);
+    }
+
+    public boolean removeById(final Long id) {
+
+        boolean result = true;
+
+        try {
+            Usuario product = this.getById(id);
+            super.remove(product);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
     public List<Usuario> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Usuario getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entityManager
+                .createQuery("FROM Usuario").getResultList();
     }
     
 }

@@ -15,19 +15,29 @@ import io.github.Pssales.projetoBD.model.TerminoMatricula;
  */
 public class TerminoMatriculaDAO extends DAO<TerminoMatricula>{
 
-    @Override
+    public TerminoMatricula getById(final Long id) {
+        return entityManager.find(TerminoMatricula.class, id);
+    }
+
+    public boolean removeById(final Long id) {
+
+        boolean result = true;
+
+        try {
+            TerminoMatricula product = this.getById(id);
+            super.remove(product);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
     public List<TerminoMatricula> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public TerminoMatricula getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entityManager
+                .createQuery("FROM Requerimento").getResultList();
     }
     
 }

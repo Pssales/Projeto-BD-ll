@@ -18,19 +18,30 @@ public class NivelDAO extends DAO<Nivel> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Nivel> findAll() {
-        return entityManager.createQuery("FROM sexo").getResultList();
-    }
-
-
-    @Override
-    public Nivel getById(Long id) {
+  
+    public Nivel getById(final Long id) {
         return entityManager.find(Nivel.class, id);
     }
 
-    @Override
-    public boolean removeById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean removeById(final Long id) {
+
+        boolean result = true;
+
+        try {
+            Nivel product = this.getById(id);
+            super.remove(product);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Nivel> findAll() {
+        return entityManager
+                .createQuery("FROM Nivel").getResultList();
     }
 
 }

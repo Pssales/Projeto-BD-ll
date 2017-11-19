@@ -18,19 +18,28 @@ public class SexoDAO extends DAO<Sexo> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Sexo> findAll() {
-        return entityManager.createQuery("FROM sexo").getResultList();
-    }
-
-
-    @Override
-    public Sexo getById(Long id) {
+   public Sexo getById(final Long id) {
         return entityManager.find(Sexo.class, id);
     }
 
-    @Override
-    public boolean removeById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean removeById(final Long id) {
+
+        boolean result = true;
+
+        try {
+            Sexo product = this.getById(id);
+            super.remove(product);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+
+        return result;
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Sexo> findAll() {
+        return entityManager
+                .createQuery("FROM Sexo").getResultList();
+    }
 }

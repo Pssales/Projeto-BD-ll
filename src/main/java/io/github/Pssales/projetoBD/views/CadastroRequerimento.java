@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import io.github.Pssales.projetoBD.dao.RequerimentoDAO;
 import io.github.Pssales.projetoBD.model.Requerimento;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -24,7 +25,10 @@ public class CadastroRequerimento extends javax.swing.JFrame {
 
         initComponents();
 
-        //Lê a tabela
+        DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
+        jTAlunos.setRowSorter(new TableRowSorter(modelo));
+
+        //preenche a tabela
         readJTable();
 
     }
@@ -34,6 +38,16 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         //Cria uma nova tabela default
         DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
         modelo.setNumRows(0);
+
+        RequerimentoDAO rDAO = new RequerimentoDAO();
+
+        for (Requerimento r : rDAO.findAll()) {
+
+            modelo.addRow(new Object[]{
+                r.getId(),
+                r.getNome(),
+                r.getPrazo(),});
+        }
 
     }
 
@@ -235,22 +249,19 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         RequerimentoDAO requerimentoDAO = new RequerimentoDAO();
 
-        Requerimento requerimento = new Requerimento();
-        requerimento.setNome(txtNome.getText());
-        requerimento.setPrazo(Integer.parseInt(txtPrazo.getText()));
+        Requerimento requerimento = new Requerimento(txtNome.getText(),Integer.parseInt(txtPrazo.getText()));
         requerimentoDAO.persist(requerimento);
-            
-       txtNome.setText("");
-       txtPrazo.setText("");
 
-       readJTable();
+        txtNome.setText("");
+        txtPrazo.setText("");
+
+        readJTable();
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
         if (jTAlunos.getSelectedRow() != -1) {
-
             //Preenche a tabela com os dados do banco
             readJTable();
         } else {

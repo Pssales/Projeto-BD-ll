@@ -15,19 +15,29 @@ import io.github.Pssales.projetoBD.views.Servidor;
  */
 public class ServidorDAO extends DAO<Servidor>{
 
-    @Override
+   public Servidor getById(final Long id) {
+        return entityManager.find(Servidor.class, id);
+    }
+
+    public boolean removeById(final Long id) {
+
+        boolean result = true;
+
+        try {
+            Servidor product = this.getById(id);
+            super.remove(product);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
     public List<Servidor> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Servidor getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entityManager
+                .createQuery("FROM Servidor").getResultList();
     }
     
 }

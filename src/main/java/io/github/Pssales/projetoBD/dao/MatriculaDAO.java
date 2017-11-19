@@ -13,21 +13,31 @@ import io.github.Pssales.projetoBD.model.Matricula;
  *
  * @author Camila
  */
-public class MatriculaDAO extends DAO<Matricula>{
+public class MatriculaDAO extends DAO<Matricula> {
 
-    @Override
+    public Matricula getById(final Long id) {
+        return entityManager.find(Matricula.class, id);
+    }
+
+    public boolean removeById(final Long id) {
+
+        boolean result = true;
+
+        try {
+            Matricula product = this.getById(id);
+            super.remove(product);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
     public List<Matricula> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entityManager
+                .createQuery("FROM Matricula").getResultList();
     }
 
-    @Override
-    public Matricula getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
