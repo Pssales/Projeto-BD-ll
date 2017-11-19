@@ -5,12 +5,13 @@
  */
 package io.github.Pssales.projetoBD.dao;
 
+import java.util.List;
+
 /**
  *
  * @author Camila
  */
 import io.github.Pssales.projetoBD.model.Status;
-import java.util.List;
 
 public class StatusDAO extends DAO<Status>{
 

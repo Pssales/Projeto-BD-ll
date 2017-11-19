@@ -7,8 +7,9 @@ package io.github.Pssales.projetoBD.views;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
-import org.hibernate.Session;
+
+import io.github.Pssales.projetoBD.dao.RequerimentoDAO;
+import io.github.Pssales.projetoBD.model.Requerimento;
 
 /**
  *
@@ -232,7 +233,12 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-       
+        RequerimentoDAO requerimentoDAO = new RequerimentoDAO();
+
+        Requerimento requerimento = new Requerimento();
+        requerimento.setNome(txtNome.getText());
+        requerimento.setPrazo(Integer.parseInt(txtPrazo.getText()));
+        requerimentoDAO.persist(requerimento);
             
        txtNome.setText("");
        txtPrazo.setText("");

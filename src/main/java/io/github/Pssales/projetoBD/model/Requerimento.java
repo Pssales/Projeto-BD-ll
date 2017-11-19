@@ -6,8 +6,11 @@
 package io.github.Pssales.projetoBD.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import org.hibernate.engine.jdbc.SerializableBlobProxy;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
@@ -25,6 +28,14 @@ public class Requerimento implements Serializable {
     @Column
     private Integer prazo;
 
+    public Requerimento(String nome, Integer prazo) {
+        this.nome = nome;
+        this.prazo = prazo;
+    }
+    public Requerimento() {
+      
+    }
+        
     public Integer getId() {
         return id;
     }

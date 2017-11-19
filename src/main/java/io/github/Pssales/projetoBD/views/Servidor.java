@@ -7,7 +7,6 @@ package io.github.Pssales.projetoBD.views;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *

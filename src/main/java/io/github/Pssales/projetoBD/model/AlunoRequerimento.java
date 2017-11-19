@@ -5,8 +5,9 @@
  */
 package io.github.Pssales.projetoBD.model;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,12 +25,12 @@ public class AlunoRequerimento implements Serializable{
 
     @Id
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "aluno_id")
+    @JoinColumn(name = "aluno_id", referencedColumnName = "id")
     private Aluno aluno;
 
     @Id
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "requerimento_id")
+    @JoinColumn(name = "requerimento_id", referencedColumnName = "id")
     private Requerimento requerimento;
     
     @Column

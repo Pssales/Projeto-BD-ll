@@ -5,8 +5,9 @@
  */
 package io.github.Pssales.projetoBD.dao;
 
-import io.github.Pssales.projetoBD.model.Pessoa;
 import java.util.List;
+
+import io.github.Pssales.projetoBD.model.Pessoa;
 
 /**
  *

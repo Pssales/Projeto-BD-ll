@@ -9,7 +9,7 @@ public class Main {
         RequerimentoDAO pqDAO = new RequerimentoDAO();
 
         Requerimento pq = new Requerimento();
-        pq.setNome("teste");
+        pq.setNome("llllllll");
         pq.setPrazo(12);
         pqDAO.persist(pq);
 
