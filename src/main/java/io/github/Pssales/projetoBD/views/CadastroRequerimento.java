@@ -261,9 +261,19 @@ public class CadastroRequerimento extends javax.swing.JFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
-        if (JTRequerimento.getSelectedRow() != -1) {
-            //Preenche a tabela com os dados do banco
+       if (JTRequerimento.getSelectedRow() != -1) {
+            Requerimento r = new Requerimento();
+            RequerimentoDAO rdao = new RequerimentoDAO();
+   
+            r.setId(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString()));
+     
+            rdao.removeById(Long.valueOf (r.getId()));
+            
+            txtNome.setText("");
+            txtPrazo.setText("");
+           
             readJTable();
+        
         } else {
             JOptionPane.showMessageDialog(null, "Erro.");
         }
@@ -294,7 +304,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
            
             r.setNome(txtNome.getText());
             r.setPrazo(Integer.parseInt(txtPrazo.getText()));
-            r.setId(Integer.parseInt((String) JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0)));
+            r.setId(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString()));
             System.out.println(r.getId());
             rdao.merge(r);
             

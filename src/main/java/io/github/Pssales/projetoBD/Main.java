@@ -5,10 +5,7 @@
  */
 package io.github.Pssales.projetoBD;
 
-import io.github.Pssales.projetoBD.dao.RequerimentoDAO;
-import io.github.Pssales.projetoBD.dao.SexoDAO;
-import io.github.Pssales.projetoBD.model.Requerimento;
-import io.github.Pssales.projetoBD.model.Sexo;
+import io.github.Pssales.projetoBD.views.Login;
 
 /**
  *
@@ -17,13 +14,7 @@ import io.github.Pssales.projetoBD.model.Sexo;
 public class Main {
 
     public static void main(String args[]) {
-        SexoDAO requerimentoDAO = new SexoDAO();
-
-        Sexo requerimento = new Sexo();
-        requerimento.setSexo("masculino");
-        requerimentoDAO.persist(requerimento);
-        Sexo requerimentos = new Sexo();
-        requerimentos.setSexo("feminino");
-        requerimentoDAO.persist(requerimentos);
+        Login login = new Login();
+        login.setVisible(true);
     }
 }
