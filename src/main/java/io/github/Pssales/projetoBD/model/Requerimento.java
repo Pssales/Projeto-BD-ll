@@ -23,9 +23,9 @@ public class Requerimento implements Serializable {
     @Column
     private Integer id;
 
-    @Column
+    @Column(length = 80)
     private String nome;
-    @Column
+    @Column(length = 4)
     private Integer prazo;
 
     public Requerimento(String nome, Integer prazo) {

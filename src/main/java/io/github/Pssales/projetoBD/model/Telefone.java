@@ -26,7 +26,7 @@ public class Telefone implements Serializable{
     @Column
     private Integer id;
 
-    @Column
+    @Column(length = 15)
     private String numero;
     
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

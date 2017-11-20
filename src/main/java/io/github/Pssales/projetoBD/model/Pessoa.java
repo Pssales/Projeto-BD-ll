@@ -25,11 +25,13 @@ public class Pessoa implements Serializable {
     @Column
     private Integer id;
 
-    @Column
+    @Column(length = 100)
     private String nome;
+    
     @Column
     @Temporal(TemporalType.DATE)
     private Date nascimento;
+    
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "sexo_id", nullable = false)
     private Sexo sexo;
@@ -40,12 +42,14 @@ public class Pessoa implements Serializable {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private final List<Matricula> matriculas = new ArrayList<Matricula>();
+    
     @OneToMany(
             mappedBy = "pessoa",
             targetEntity = Documento.class,
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private final List<Documento> documentos = new ArrayList<Documento>();
+    
     @OneToMany(
             mappedBy = "pessoa",
             targetEntity = Telefone.class,

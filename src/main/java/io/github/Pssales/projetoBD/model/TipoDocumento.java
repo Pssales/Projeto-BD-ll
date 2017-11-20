@@ -29,8 +29,9 @@ public class TipoDocumento implements Serializable {
     @Column
     private Integer id;
 
-    @Column
-    private String sexo;
+    @Column(length = 20)
+    private String tipo;
+    
     @OneToMany(
             mappedBy = "tipoDocumento",
             targetEntity = Documento.class,
@@ -46,12 +47,12 @@ public class TipoDocumento implements Serializable {
         this.id = id;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 }

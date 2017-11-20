@@ -29,9 +29,9 @@ public class Usuario implements Serializable{
     @Column
     private Integer id;
 
-    @Column
+    @Column(length = 70)
     private String login;
-    @Column
+    @Column(length = 60)
     private String senha;
     
     @OneToOne

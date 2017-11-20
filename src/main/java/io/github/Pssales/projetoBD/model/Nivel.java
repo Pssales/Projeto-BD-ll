@@ -28,7 +28,7 @@ public class Nivel implements Serializable{
     @Column
     private Integer id;
 
-    @Column
+    @Column(length = 20)
     private String nivel;
     
     @OneToMany(

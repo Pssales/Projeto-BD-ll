@@ -29,7 +29,7 @@ public class Sexo implements Serializable{
     @Column
     private Integer id;
 
-    @Column
+    @Column(length = 20)
     private String sexo;
     
     @OneToMany(

@@ -33,11 +33,13 @@ public class Matricula implements Serializable {
     @Column
     private Integer id;
 
-    @Column
+    @Column(length = 10)
     private String matricula;
+    
     @Column
     @Temporal(TemporalType.DATE)
     private Date data_matricula;
+    
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;

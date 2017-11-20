@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -26,6 +28,7 @@ public class TerminoMatricula implements Serializable{
     private Integer id;
 
     @Column
+    @Temporal(TemporalType.DATE)
     private Date data;
     
     @OneToOne

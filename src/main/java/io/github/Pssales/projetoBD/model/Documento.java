@@ -28,7 +28,7 @@ public class Documento implements Serializable {
     @Column
     private Integer id;
 
-    @Column
+    @Column(length = 15)
     private String numero;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_documento_id", nullable = false)
