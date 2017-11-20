@@ -32,7 +32,7 @@ public class Nivel implements Serializable{
     private String nivel;
     
     @OneToMany(
-            mappedBy = "usuario",
+            mappedBy = "nivel",
             targetEntity = Usuario.class,
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)

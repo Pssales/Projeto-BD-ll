@@ -27,6 +27,7 @@ public class TerminoMatricula implements Serializable{
 
     @Column
     private Date data;
+    
     @OneToOne
     private Matricula matricula;
 

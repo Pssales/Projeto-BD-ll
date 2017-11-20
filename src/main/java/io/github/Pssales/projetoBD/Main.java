@@ -23,7 +23,7 @@ public class Main {
         requerimento.setSexo("masculino");
         requerimentoDAO.persist(requerimento);
         Sexo requerimentos = new Sexo();
-        requerimentos.setSexo("masculino");
+        requerimentos.setSexo("feminino");
         requerimentoDAO.persist(requerimentos);
     }
 }

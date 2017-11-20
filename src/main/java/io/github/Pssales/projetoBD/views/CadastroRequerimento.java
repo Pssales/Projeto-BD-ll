@@ -25,8 +25,8 @@ public class CadastroRequerimento extends javax.swing.JFrame {
 
         initComponents();
 
-        DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
-        jTAlunos.setRowSorter(new TableRowSorter(modelo));
+        DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
+        JTRequerimento.setRowSorter(new TableRowSorter(modelo));
 
         //preenche a tabela
         readJTable();
@@ -36,7 +36,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     public void readJTable() {
 
         //Cria uma nova tabela default
-        DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
         modelo.setNumRows(0);
 
         RequerimentoDAO rDAO = new RequerimentoDAO();
@@ -55,7 +55,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     public void readJTableName(String name) {
 
         //Cria uma tabela default
-        DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
         modelo.setNumRows(0);
 
     }
@@ -81,7 +81,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTAlunos = new javax.swing.JTable();
+        JTRequerimento = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciar Aluno");
@@ -190,7 +190,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        jTAlunos.setModel(new javax.swing.table.DefaultTableModel(
+        JTRequerimento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -206,18 +206,18 @@ public class CadastroRequerimento extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTAlunos.getTableHeader().setReorderingAllowed(false);
-        jTAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
+        JTRequerimento.getTableHeader().setReorderingAllowed(false);
+        JTRequerimento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTAlunosMouseClicked(evt);
+                JTRequerimentoMouseClicked(evt);
             }
         });
-        jTAlunos.addKeyListener(new java.awt.event.KeyAdapter() {
+        JTRequerimento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTAlunosKeyReleased(evt);
+                JTRequerimentoKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(jTAlunos);
+        jScrollPane1.setViewportView(JTRequerimento);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,7 +261,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
-        if (jTAlunos.getSelectedRow() != -1) {
+        if (JTRequerimento.getSelectedRow() != -1) {
             //Preenche a tabela com os dados do banco
             readJTable();
         } else {
@@ -270,26 +270,37 @@ public class CadastroRequerimento extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jTAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTAlunosMouseClicked
+    private void JTRequerimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTRequerimentoMouseClicked
         // preenche os campos com registos do banco de dados
 
-        if (jTAlunos.getSelectedRow() != -1) {
+        if (JTRequerimento.getSelectedRow() != -1) {
 
-            txtNome.setText(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 1).toString());
-            txtPrazo.setText(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 2).toString());
+            txtNome.setText(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 1).toString());
+            txtPrazo.setText(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 2).toString());
 
         }
 
-    }//GEN-LAST:event_jTAlunosMouseClicked
+    }//GEN-LAST:event_JTRequerimentoMouseClicked
 
-    private void jTAlunosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAlunosKeyReleased
+    private void JTRequerimentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTRequerimentoKeyReleased
 
-    }//GEN-LAST:event_jTAlunosKeyReleased
+    }//GEN-LAST:event_JTRequerimentoKeyReleased
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // Verifica se uma linha foi selecionada
-        if (jTAlunos.getSelectedRow() != -1) {
-
+        if (JTRequerimento.getSelectedRow() != -1) {
+            Requerimento r = new Requerimento();
+            RequerimentoDAO rdao = new RequerimentoDAO();
+           
+            r.setNome(txtNome.getText());
+            r.setPrazo(Integer.parseInt(txtPrazo.getText()));
+            r.setId(Integer.parseInt((String) JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0)));
+            System.out.println(r.getId());
+            rdao.merge(r);
+            
+            txtNome.setText("");
+            txtPrazo.setText("");
+           
             readJTable();
         }
 
@@ -478,6 +489,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTRequerimento;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAtualizar;
@@ -487,7 +499,6 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTAlunos;
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPrazo;

@@ -29,12 +29,13 @@ public class Usuario implements Serializable{
     @Column
     private Integer id;
 
-    @OneToOne
-    private Matricula matricula;
     @Column
-    private String usuario;
+    private String login;
     @Column
     private String senha;
+    
+    @OneToOne
+    private Matricula matricula;
     
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "nivel_id", nullable = false)
@@ -57,11 +58,11 @@ public class Usuario implements Serializable{
     }
 
     public String getUsuario() {
-        return usuario;
+        return login;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUsuario(String login) {
+        this.login = login;
     }
 
     public String getSenha() {

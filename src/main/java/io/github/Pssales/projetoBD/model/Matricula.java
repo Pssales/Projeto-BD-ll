@@ -45,12 +45,15 @@ public class Matricula implements Serializable {
     @OneToOne(mappedBy = "matricula")
     @NotNull
     private Aluno aluno;
+    
     @OneToOne(mappedBy = "matricula")
     @NotNull
     private Servidor servidor;
+    
     @OneToOne(mappedBy = "matricula")
     @NotNull
     private Usuario usuario;
+    
     @OneToOne(mappedBy = "matricula")
     @NotNull
     private TerminoMatricula terminoMatricula;
