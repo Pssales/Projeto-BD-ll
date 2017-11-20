@@ -6,7 +6,9 @@
 package io.github.Pssales.projetoBD;
 
 import io.github.Pssales.projetoBD.dao.RequerimentoDAO;
+import io.github.Pssales.projetoBD.dao.SexoDAO;
 import io.github.Pssales.projetoBD.model.Requerimento;
+import io.github.Pssales.projetoBD.model.Sexo;
 
 /**
  *
@@ -15,11 +17,13 @@ import io.github.Pssales.projetoBD.model.Requerimento;
 public class Main {
 
     public static void main(String args[]) {
-        RequerimentoDAO requerimentoDAO = new RequerimentoDAO();
+        SexoDAO requerimentoDAO = new SexoDAO();
 
-        Requerimento requerimento = new Requerimento();
-        requerimento.setNome("jkjjkkjhk");
-        requerimento.setPrazo(12);
+        Sexo requerimento = new Sexo();
+        requerimento.setSexo("masculino");
         requerimentoDAO.persist(requerimento);
+        Sexo requerimentos = new Sexo();
+        requerimentos.setSexo("masculino");
+        requerimentoDAO.persist(requerimentos);
     }
 }

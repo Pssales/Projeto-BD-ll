@@ -7,6 +7,11 @@ package io.github.Pssales.projetoBD.views;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import io.github.Pssales.projetoBD.dao.SexoDAO;
+import io.github.Pssales.projetoBD.model.Documento;
+import io.github.Pssales.projetoBD.model.Pessoa;
+import io.github.Pssales.projetoBD.model.Sexo;
+import io.github.Pssales.projetoBD.model.Telefone;
 
 /**
  *
@@ -18,9 +23,12 @@ public class CadastroAluno extends javax.swing.JFrame {
      * Creates new form ViewJTable
      */
     public CadastroAluno() {
-        
+
         initComponents();
-        
+        SexoDAO sexoDAO = new SexoDAO();
+        for (Sexo sexo : sexoDAO.findAll()) {
+            cdSexo.addItem(sexo.getSexo());
+        }
         //Lê a tabela
         readJTable();
 
@@ -31,18 +39,16 @@ public class CadastroAluno extends javax.swing.JFrame {
         //Cria uma nova tabela default
         DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
         modelo.setNumRows(0);
-       
 
-       
     }
-    
+
     //Preenche a tabela com os dados do banco que atendem o parametro passado
     public void readJTableName(String name) {
 
         //Cria uma tabela default
         DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
         modelo.setNumRows(0);
-       
+
     }
 
     /**
@@ -74,7 +80,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCelular = new javax.swing.JLabel();
         txtTelefone1 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        cdSexo = new javax.swing.JComboBox<Object>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTAlunos = new javax.swing.JTable();
 
@@ -142,12 +148,6 @@ public class CadastroAluno extends javax.swing.JFrame {
 
         txtCelular.setText("Celular:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -168,9 +168,9 @@ public class CadastroAluno extends javax.swing.JFrame {
                                 .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
                                 .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(185, 185, 185))
+                                .addGap(18, 18, 18)
+                                .addComponent(cdSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(256, 256, 256))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(23, 23, 23)
@@ -216,7 +216,7 @@ public class CadastroAluno extends javax.swing.JFrame {
                     .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cdSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -295,7 +295,11 @@ public class CadastroAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-      
+        Pessoa p = new Pessoa();
+        Telefone t = new Telefone();
+        Telefone c = new Telefone();
+        Documento rg = new Documento();
+        Documento cpf = new Documento();
         readJTable();
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
@@ -303,11 +307,10 @@ public class CadastroAluno extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
         if (jTAlunos.getSelectedRow() != -1) {
-           
-            
+
             //Preenche a tabela com os dados do banco
             readJTable();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Erro.");
         }
 
@@ -317,7 +320,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         // preenche os campos com registos do banco de dados
 
         if (jTAlunos.getSelectedRow() != -1) {
-            
+
             txtNome.setText(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 1).toString());
             txtNascimento.setText(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 2).toString());
             txtTelefone.setText(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 3).toString());
@@ -329,13 +332,13 @@ public class CadastroAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_jTAlunosMouseClicked
 
     private void jTAlunosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAlunosKeyReleased
-     
+
     }//GEN-LAST:event_jTAlunosKeyReleased
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // Verifica se uma linha foi selecionada
         if (jTAlunos.getSelectedRow() != -1) {
-           
+
             readJTable();
         }
 
@@ -360,10 +363,6 @@ public class CadastroAluno extends javax.swing.JFrame {
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscaActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -432,6 +431,7 @@ public class CadastroAluno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<Object> cdSexo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAtualizar;
@@ -446,7 +446,6 @@ public class CadastroAluno extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTAlunos;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JLabel txtCelular;
