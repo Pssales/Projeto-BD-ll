@@ -7,7 +7,7 @@ import io.github.Pssales.projetoBD.model.Requerimento;
 public class RequerimentoDAO extends DAO<Requerimento> {
 
     public Requerimento getById(final Long id) {
-        return entityManager.find(Requerimento.class, id);
+        return this.entityManager.find(Requerimento.class, id);
     }
 
     public boolean removeById(final Long id) {
@@ -15,8 +15,8 @@ public class RequerimentoDAO extends DAO<Requerimento> {
         boolean result = true;
 
         try {
-            Requerimento product = this.getById(id);
-            super.remove(product);
+            Requerimento requerimento = this.getById(id);
+            super.remove(requerimento);
         } catch (Exception ex) {
             ex.printStackTrace();
             result = false;

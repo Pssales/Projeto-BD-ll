@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 
 public abstract class DAO<E> {
 
-    protected static final EntityManager entityManager = 
+    protected static final EntityManager entityManager =
             Persistence.createEntityManagerFactory("hibernate-example").createEntityManager();
 
     public abstract List<E> findAll();

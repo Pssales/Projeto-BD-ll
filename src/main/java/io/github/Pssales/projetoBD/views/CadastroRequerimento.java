@@ -29,25 +29,24 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         JTRequerimento.setRowSorter(new TableRowSorter(modelo));
 
         //preenche a tabela
-        readJTable();
+        writeJTable();
 
     }
 
-    public void readJTable() {
+    public void writeJTable() {
 
         //Cria uma nova tabela default
         DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
         modelo.setNumRows(0);
-//
-//        RequerimentoDAO rDAO = new RequerimentoDAO();
-//
-//        for (Requerimento r : rDAO.findAll()) {
-//
-//            modelo.addRow(new Object[]{
-//                r.getId(),
-//                r.getNome(),
-//                r.getPrazo(),});
-//        }
+
+        RequerimentoDAO rDAO = new RequerimentoDAO();
+
+       for (Requerimento r : rDAO.findAll()) {
+            modelo.addRow(new Object[]{
+                r.getId(),
+                r.getNome(),
+                r.getPrazo(),});
+        }
 
     }
 
@@ -255,7 +254,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         txtNome.setText("");
         txtPrazo.setText("");
 
-        readJTable();
+        writeJTable();
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
@@ -266,13 +265,13 @@ public class CadastroRequerimento extends javax.swing.JFrame {
             RequerimentoDAO rdao = new RequerimentoDAO();
    
             r.setId(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString()));
-     
+            JOptionPane.showMessageDialog(null, r.getId());
             rdao.removeById(Long.valueOf (r.getId()));
             
             txtNome.setText("");
             txtPrazo.setText("");
            
-            readJTable();
+            writeJTable();
         
         } else {
             JOptionPane.showMessageDialog(null, "Erro.");
@@ -311,7 +310,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
             txtNome.setText("");
             txtPrazo.setText("");
            
-            readJTable();
+            writeJTable();
         }
 
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
