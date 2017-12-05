@@ -36,6 +36,10 @@ public class Telefone implements Serializable{
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_telefone_id", nullable = false)
     private TipoTelefone tipoTelefone;
+
+    public Telefone(String numero) {
+        this.numero = numero;
+    }
     
 
     public Integer getId() {

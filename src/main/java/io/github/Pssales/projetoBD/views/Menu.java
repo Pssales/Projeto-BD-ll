@@ -29,6 +29,7 @@ public class Menu extends javax.swing.JFrame {
 
         Requerimento = new javax.swing.JButton();
         GerenciarAluno = new javax.swing.JButton();
+        Solicitacoes = new javax.swing.JButton();
         Servidor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,6 +51,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        Solicitacoes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Solicitacoes.setText("Solicitações");
+        Solicitacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SolicitacoesActionPerformed(evt);
+            }
+        });
+
         Servidor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Servidor.setText("Servidor");
         Servidor.addActionListener(new java.awt.event.ActionListener() {
@@ -62,16 +71,20 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
-                .addComponent(GerenciarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(Requerimento, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Solicitacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(GerenciarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(Requerimento, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(63, 63, 63))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(Servidor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(260, Short.MAX_VALUE)
+                    .addComponent(Servidor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(63, 63, 63)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,9 +93,14 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GerenciarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Requerimento, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Servidor, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(Solicitacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(139, Short.MAX_VALUE)
+                    .addComponent(Servidor, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(48, 48, 48)))
         );
 
         pack();
@@ -90,21 +108,27 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RequerimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequerimentoActionPerformed
-        CadastroRequerimento r= new CadastroRequerimento();
+        CadastroRequerimento r = new CadastroRequerimento();
         r.setVisible(true);
         dispose();
     }//GEN-LAST:event_RequerimentoActionPerformed
 
     private void GerenciarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciarAlunoActionPerformed
-        CadastroAluno a= new CadastroAluno();
+        CadastroAluno a = new CadastroAluno();
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_GerenciarAlunoActionPerformed
 
-    private void ServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServidorActionPerformed
-       Servidor s = new Servidor();
-       s.setVisible(true);
+    private void SolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SolicitacoesActionPerformed
+       AlunoRequerimento ar = new AlunoRequerimento();
+       ar.setVisible(true);
        dispose();
+    }//GEN-LAST:event_SolicitacoesActionPerformed
+
+    private void ServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServidorActionPerformed
+        Servidor s = new Servidor();
+        s.setVisible(true);
+        dispose();
     }//GEN-LAST:event_ServidorActionPerformed
 
     /**
@@ -149,5 +173,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton GerenciarAluno;
     private javax.swing.JButton Requerimento;
     private javax.swing.JButton Servidor;
+    private javax.swing.JButton Solicitacoes;
     // End of variables declaration//GEN-END:variables
 }

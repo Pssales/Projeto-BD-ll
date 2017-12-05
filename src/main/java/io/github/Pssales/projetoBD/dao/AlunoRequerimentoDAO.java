@@ -5,6 +5,7 @@
  */
 package io.github.Pssales.projetoBD.dao;
 
+import static io.github.Pssales.projetoBD.dao.DAO.entityManager;
 import java.util.List;
 
 import io.github.Pssales.projetoBD.model.AlunoRequerimento;
@@ -13,11 +14,12 @@ import io.github.Pssales.projetoBD.model.AlunoRequerimento;
  *
  * @author Camila
  */
-public class AlunoRequerimentoDAO extends DAO<AlunoRequerimento>{
+public class AlunoRequerimentoDAO extends DAO<AlunoRequerimento> {
 
     @Override
     public List<AlunoRequerimento> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entityManager
+                .createQuery("FROM Aluno").getResultList();
     }
 
     @Override
@@ -29,5 +31,5 @@ public class AlunoRequerimentoDAO extends DAO<AlunoRequerimento>{
     public boolean removeById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

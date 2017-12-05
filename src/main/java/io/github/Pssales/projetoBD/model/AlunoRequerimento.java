@@ -47,4 +47,13 @@ public class AlunoRequerimento implements Serializable{
     @JoinColumn(name = "servidor_id", nullable = false)
     private Servidor servidor;
 
+    public AlunoRequerimento(Aluno aluno, Requerimento requerimento, Servidor servidor) {
+        this.aluno = aluno;
+        this.requerimento = requerimento;
+        this.servidor = servidor;
+    }
+    
+    
+    
+ 
 }

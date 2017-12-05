@@ -19,7 +19,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Pessoa implements Serializable {
-
+    
+    public Pessoa(String nome, String data){
+        this.nome = nome;
+        this.nascimento = new Date();
+    }
     @Id
     @GeneratedValue
     @Column
@@ -89,5 +93,18 @@ public class Pessoa implements Serializable {
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public List<Documento> getDocumentos() {
+        return documentos;
+    }
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+    
 
 }

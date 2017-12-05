@@ -6,6 +6,7 @@
 package io.github.Pssales.projetoBD;
 
 import io.github.Pssales.projetoBD.views.Login;
+import io.github.Pssales.projetoBD.views.Menu;
 
 /**
  *
@@ -14,7 +15,7 @@ import io.github.Pssales.projetoBD.views.Login;
 public class Main {
 
     public static void main(String args[]) {
-        Login login = new Login();
+        Menu login = new Menu();
         login.setVisible(true);
     }
 }
