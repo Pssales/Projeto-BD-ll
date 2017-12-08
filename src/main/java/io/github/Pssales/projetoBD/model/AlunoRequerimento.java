@@ -46,10 +46,54 @@ public class AlunoRequerimento implements Serializable{
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "servidor_id", nullable = false)
     private Servidor servidor;
+    
+    public AlunoRequerimento(){
+        
+    }
 
-    public AlunoRequerimento(Aluno aluno, Requerimento requerimento, Servidor servidor) {
+    public AlunoRequerimento(Aluno aluno, Requerimento requerimento, Servidor servidor, Status status) {
         this.aluno = aluno;
         this.requerimento = requerimento;
+        this.servidor = servidor;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Requerimento getRequerimento() {
+        return requerimento;
+    }
+
+    public void setRequerimento(Requerimento requerimento) {
+        this.requerimento = requerimento;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Date getData_requerimento() {
+        return data_requerimento;
+    }
+
+    public void setData_requerimento(Date data_requerimento) {
+        this.data_requerimento = data_requerimento;
+    }
+
+    public Servidor getServidor() {
+        return servidor;
+    }
+
+    public void setServidor(Servidor servidor) {
         this.servidor = servidor;
     }
     

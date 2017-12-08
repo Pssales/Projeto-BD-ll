@@ -32,4 +32,8 @@ public class AlunoRequerimentoDAO extends DAO<AlunoRequerimento> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void persist(io.github.Pssales.projetoBD.views.AlunoRequerimento ad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

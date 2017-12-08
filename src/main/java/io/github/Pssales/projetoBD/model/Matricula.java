@@ -44,13 +44,13 @@ public class Matricula implements Serializable {
     @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;
 
-    @OneToOne(mappedBy = "matricula")
+    /* @OneToOne(mappedBy = "matricula")
     @NotNull
     private Aluno aluno;
     
     @OneToOne(mappedBy = "matricula")
     @NotNull
-    private Servidor servidor;
+    private Servidor servidor;*/
     
     @OneToOne(mappedBy = "matricula")
     @NotNull

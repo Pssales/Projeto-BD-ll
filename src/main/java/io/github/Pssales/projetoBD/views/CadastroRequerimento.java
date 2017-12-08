@@ -38,14 +38,14 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         //Cria uma nova tabela default
         DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
         modelo.setNumRows(0);
-
+       
         RequerimentoDAO rDAO = new RequerimentoDAO();
-
-       for (Requerimento r : rDAO.findAll()) {
-            modelo.addRow(new Object[]{
-                r.getId(),
-                r.getNome(),
-                r.getPrazo(),});
+        
+        for (Requerimento r : rDAO.findAll()) {
+        modelo.addRow(new Object[]{
+        r.getId(),
+        r.getNome(),
+        r.getPrazo(),});
         }
 
     }

@@ -26,8 +26,18 @@ public class Aluno implements Serializable {
     @Column
     private Integer id;
 
-    @OneToOne
-    private Matricula matricula;
+    /* @OneToOne
+    private Matricula matricula;*/
+    @Column
+    private String nome;
+
+    public Aluno(String nome) {
+        this.nome = nome;
+    }
+    
+    public Aluno() {
+  
+    }
 
     public Integer getId() {
         return id;
@@ -37,12 +47,19 @@ public class Aluno implements Serializable {
         this.id = id;
     }
 
-    public Matricula getMatricula() {
-        return matricula;
+    public String getNome() {
+        return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /*public Matricula getMatricula() {
+    return matricula;
+    }
+    
     public void setMatricula(Matricula matricula) {
-        this.matricula = matricula;
-    }
-
+    this.matricula = matricula;
+    }*/
 }

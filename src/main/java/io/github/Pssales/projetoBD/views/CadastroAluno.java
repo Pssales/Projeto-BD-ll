@@ -5,13 +5,12 @@
  */
 package io.github.Pssales.projetoBD.views;
 
-import io.github.Pssales.projetoBD.dao.PessoaDAO;
+import io.github.Pssales.projetoBD.dao.AlunoDAO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import io.github.Pssales.projetoBD.dao.SexoDAO;
-import io.github.Pssales.projetoBD.model.Pessoa;
+import io.github.Pssales.projetoBD.model.Aluno;
 import io.github.Pssales.projetoBD.model.Sexo;
-import io.github.Pssales.projetoBD.model.Telefone;
 
 /**
  *
@@ -317,15 +316,10 @@ public class CadastroAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        Pessoa p;
-        p = new Pessoa(txtNome.getText(),txtData.getText());
-        Telefone t = new Telefone(this.tel.getText());
-        Telefone c = new Telefone(this.cel.getText());
-        p.getTelefones().add(c);
-        p.getTelefones().add(t);
-        
-        PessoaDAO o = new PessoaDAO();
-        o.persist(p);
+        Aluno aluno = new Aluno();
+        aluno.setNome(txtNome.getText());
+        AlunoDAO adao =  new AlunoDAO();
+        adao.persist(aluno);
         /* Documento rg = new Documento();
         Documento cpf = new Documento();
         readJTable();*/

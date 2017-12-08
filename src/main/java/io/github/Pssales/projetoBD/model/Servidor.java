@@ -30,8 +30,11 @@ public class Servidor implements Serializable{
     @Column
     private Integer id;
 
-    @OneToOne
-    private Matricula matricula;
+    /*@OneToOne
+    private Matricula matricula;*/
+    
+    @Column 
+    private String nome;
     
     @OneToMany(
             mappedBy = "servidor",
@@ -47,14 +50,22 @@ public class Servidor implements Serializable{
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public Matricula getMatricula() {
-        return matricula;
+    
+    public String getNome() {
+        return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /* public Matricula getMatricula() {
+    return matricula;
+    }
+    
     public void setMatricula(Matricula matricula) {
-        this.matricula = matricula;
-    }
+    this.matricula = matricula;
+    }*/
     
     
 }
