@@ -38,14 +38,14 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         //Cria uma nova tabela default
         DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
         modelo.setNumRows(0);
-       
+
         RequerimentoDAO rDAO = new RequerimentoDAO();
-        
+
         for (Requerimento r : rDAO.findAll()) {
-        modelo.addRow(new Object[]{
-        r.getId(),
-        r.getNome(),
-        r.getPrazo(),});
+            modelo.addRow(new Object[]{
+                r.getId(),
+                r.getNome(),
+                r.getPrazo(),});
         }
 
     }
@@ -248,7 +248,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         RequerimentoDAO requerimentoDAO = new RequerimentoDAO();
 
-        Requerimento requerimento = new Requerimento(txtNome.getText(),Integer.parseInt(txtPrazo.getText()));
+        Requerimento requerimento = new Requerimento(txtNome.getText(), Integer.parseInt(txtPrazo.getText()));
         requerimentoDAO.persist(requerimento);
 
         txtNome.setText("");
@@ -260,19 +260,18 @@ public class CadastroRequerimento extends javax.swing.JFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
-       if (JTRequerimento.getSelectedRow() != -1) {
+        if (JTRequerimento.getSelectedRow() != -1) {
             Requerimento r = new Requerimento();
             RequerimentoDAO rdao = new RequerimentoDAO();
-   
+
             r.setId(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString()));
-            JOptionPane.showMessageDialog(null, r.getId());
-            rdao.removeById(Long.valueOf (r.getId()));
-            
+            rdao.remove(r);
+
             txtNome.setText("");
             txtPrazo.setText("");
-           
+
             writeJTable();
-        
+
         } else {
             JOptionPane.showMessageDialog(null, "Erro.");
         }
@@ -300,16 +299,16 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         if (JTRequerimento.getSelectedRow() != -1) {
             Requerimento r = new Requerimento();
             RequerimentoDAO rdao = new RequerimentoDAO();
-           
+
             r.setNome(txtNome.getText());
             r.setPrazo(Integer.parseInt(txtPrazo.getText()));
             r.setId(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString()));
             System.out.println(r.getId());
             rdao.merge(r);
-            
+
             txtNome.setText("");
             txtPrazo.setText("");
-           
+
             writeJTable();
         }
 

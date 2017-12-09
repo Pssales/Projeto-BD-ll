@@ -21,6 +21,8 @@ public class CadastroAluno extends javax.swing.JFrame {
     /**
      * Creates new form ViewJTable
      */
+    AlunoDAO aDao = new AlunoDAO();
+
     public CadastroAluno() {
 
         initComponents();
@@ -35,9 +37,14 @@ public class CadastroAluno extends javax.swing.JFrame {
 
     public void readJTable() {
 
-        //Cria uma nova tabela default
         DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
         modelo.setNumRows(0);
+
+        for (Aluno r : aDao.findAll()) {
+            modelo.addRow(new Object[]{
+                r.getId(),
+                r.getNome(),});
+        }
 
     }
 
@@ -318,8 +325,7 @@ public class CadastroAluno extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         Aluno aluno = new Aluno();
         aluno.setNome(txtNome.getText());
-        AlunoDAO adao =  new AlunoDAO();
-        adao.persist(aluno);
+        aDao.persist(aluno);
         /* Documento rg = new Documento();
         Documento cpf = new Documento();
         readJTable();*/
@@ -329,8 +335,13 @@ public class CadastroAluno extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
         if (jTAlunos.getSelectedRow() != -1) {
+            Aluno r = new Aluno();
 
-            //Preenche a tabela com os dados do banco
+            r.setId(Integer.parseInt(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 0).toString()));
+            aDao.remove(r);
+
+            txtNome.setText("");
+
             readJTable();
         } else {
             JOptionPane.showMessageDialog(null, "Erro.");
@@ -342,10 +353,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         // preenche os campos com registos do banco de dados
 
         if (jTAlunos.getSelectedRow() != -1) {
-
             txtNome.setText(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 1).toString());
-            rg.setText(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 4).toString());
-
         }
 
     }//GEN-LAST:event_jTAlunosMouseClicked
@@ -357,7 +365,14 @@ public class CadastroAluno extends javax.swing.JFrame {
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // Verifica se uma linha foi selecionada
         if (jTAlunos.getSelectedRow() != -1) {
+            Aluno r = new Aluno();
 
+            r.setNome(txtNome.getText());
+            r.setId(Integer.parseInt(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 0).toString()));
+
+            aDao.merge(r);
+
+            txtNome.setText("");
             readJTable();
         }
 
@@ -409,38 +424,7 @@ public class CadastroAluno extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
