@@ -39,22 +39,22 @@ public class AlunoRequerimento implements Serializable{
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
     
-    @Column
+    /*@Column
     @Temporal(TemporalType.DATE)
-    private Date data_requerimento;
+    private Date data_requerimento;*/
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    /* @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "servidor_id", nullable = false)
-    private Servidor servidor;
+    private Servidor servidor;*/
     
     public AlunoRequerimento(){
         
     }
 
-    public AlunoRequerimento(Aluno aluno, Requerimento requerimento, Servidor servidor, Status status) {
+    public AlunoRequerimento(Aluno aluno, Requerimento requerimento, Status status) {
         this.aluno = aluno;
         this.requerimento = requerimento;
-        this.servidor = servidor;
+        this.status = status;
     }
 
     public Aluno getAluno() {
@@ -81,23 +81,20 @@ public class AlunoRequerimento implements Serializable{
         this.status = status;
     }
 
-    public Date getData_requerimento() {
-        return data_requerimento;
+    /* public Date getData_requerimento() {
+    return data_requerimento;
     }
-
+    
     public void setData_requerimento(Date data_requerimento) {
-        this.data_requerimento = data_requerimento;
-    }
+    this.data_requerimento = data_requerimento;
+    }*/
 
-    public Servidor getServidor() {
-        return servidor;
+    /* public Servidor getServidor() {
+    return servidor;
     }
-
+    
     public void setServidor(Servidor servidor) {
-        this.servidor = servidor;
-    }
-    
-    
-    
- 
+    this.servidor = servidor;
+    }*/  
+   
 }

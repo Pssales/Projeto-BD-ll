@@ -46,5 +46,20 @@ public class Status implements Serializable{
         this.id = id;
     }
 
+    public String getStatus() {
+        return status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public List<AlunoRequerimento> getAluno_requerimento() {
+        return aluno_requerimento;
+    }
+
+    
+    
+
     
 }

@@ -37,7 +37,7 @@ public class StatusDAO extends DAO<Status>{
     @SuppressWarnings("unchecked")
     public List<Status> findAll() {
         return entityManager
-                .createQuery("FROM Requerimento").getResultList();
+                .createQuery("FROM Status").getResultList();
     }
     
 }

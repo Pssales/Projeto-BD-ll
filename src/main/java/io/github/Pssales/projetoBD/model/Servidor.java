@@ -36,12 +36,12 @@ public class Servidor implements Serializable{
     @Column 
     private String nome;
     
-    @OneToMany(
-            mappedBy = "servidor",
-            targetEntity = AlunoRequerimento.class,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private final List<AlunoRequerimento> aluno_requerimentos = new ArrayList<AlunoRequerimento>();
+    /* @OneToMany(
+    mappedBy = "servidor",
+    targetEntity = AlunoRequerimento.class,
+    fetch = FetchType.LAZY,
+    cascade = CascadeType.ALL)
+    private final List<AlunoRequerimento> aluno_requerimentos = new ArrayList<AlunoRequerimento>();*/
 
     public Integer getId() {
         return id;
