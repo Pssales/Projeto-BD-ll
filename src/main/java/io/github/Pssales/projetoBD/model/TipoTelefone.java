@@ -26,7 +26,7 @@ public class TipoTelefone implements Serializable{
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
 
     @Column(length = 20)
     private String tipo;
@@ -38,11 +38,11 @@ public class TipoTelefone implements Serializable{
             cascade = CascadeType.ALL)
     private final List<Telefone> telefones = new ArrayList<Telefone>();
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

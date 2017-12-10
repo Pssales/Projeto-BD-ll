@@ -326,9 +326,8 @@ public class CadastroAluno extends javax.swing.JFrame {
         Aluno aluno = new Aluno();
         aluno.setNome(txtNome.getText());
         aDao.persist(aluno);
-        /* Documento rg = new Documento();
-        Documento cpf = new Documento();
-        readJTable();*/
+        
+        readJTable();
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
@@ -337,9 +336,10 @@ public class CadastroAluno extends javax.swing.JFrame {
         if (jTAlunos.getSelectedRow() != -1) {
             Aluno r = new Aluno();
 
-            r.setId(Integer.parseInt(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 0).toString()));
-            aDao.remove(r);
-
+            r.setId(Long.valueOf(Integer.parseInt(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 0).toString())));
+            aDao.removeById(Long.valueOf (r.getId()));
+            Aluno d = aDao.getById(r.getId());
+            
             txtNome.setText("");
 
             readJTable();
@@ -368,7 +368,7 @@ public class CadastroAluno extends javax.swing.JFrame {
             Aluno r = new Aluno();
 
             r.setNome(txtNome.getText());
-            r.setId(Integer.parseInt(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 0).toString()));
+            r.setId(Long.valueOf(Integer.parseInt(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 0).toString())));
 
             aDao.merge(r);
 

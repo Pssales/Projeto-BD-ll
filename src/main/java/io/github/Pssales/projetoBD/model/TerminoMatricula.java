@@ -25,7 +25,7 @@ public class TerminoMatricula implements Serializable{
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
 
     @Column
     @Temporal(TemporalType.DATE)
@@ -34,11 +34,11 @@ public class TerminoMatricula implements Serializable{
     @OneToOne
     private Matricula matricula;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

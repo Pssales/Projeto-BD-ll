@@ -27,7 +27,7 @@ public class Sexo implements Serializable{
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
 
     @Column(length = 20)
     private String sexo;
@@ -38,11 +38,11 @@ public class Sexo implements Serializable{
 		fetch = FetchType.LAZY, 
 		cascade = CascadeType.ALL)
 	private final List<Pessoa> pessoas = new ArrayList<Pessoa>();
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

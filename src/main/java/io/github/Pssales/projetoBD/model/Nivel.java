@@ -26,7 +26,7 @@ public class Nivel implements Serializable{
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
 
     @Column(length = 20)
     private String nivel;
@@ -37,11 +37,11 @@ public class Nivel implements Serializable{
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private final List<Usuario> usuarios = new ArrayList<Usuario>();
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

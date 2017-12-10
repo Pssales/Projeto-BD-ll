@@ -24,7 +24,7 @@ public class Telefone implements Serializable{
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
 
     @Column(length = 15)
     private String numero;
@@ -42,11 +42,11 @@ public class Telefone implements Serializable{
     }
     
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

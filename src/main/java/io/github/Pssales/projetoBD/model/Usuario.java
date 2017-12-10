@@ -27,7 +27,7 @@ public class Usuario implements Serializable{
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
 
     @Column(length = 70)
     private String login;
@@ -41,11 +41,11 @@ public class Usuario implements Serializable{
     @JoinColumn(name = "nivel_id", nullable = false)
     private Nivel nivel;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

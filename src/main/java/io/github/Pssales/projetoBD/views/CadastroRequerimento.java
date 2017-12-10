@@ -21,6 +21,8 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     /**
      * Creates new form ViewJTable
      */
+    RequerimentoDAO rdao = new RequerimentoDAO();
+
     public CadastroRequerimento() {
 
         initComponents();
@@ -39,9 +41,8 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
         modelo.setNumRows(0);
 
-        RequerimentoDAO rDAO = new RequerimentoDAO();
 
-        for (Requerimento r : rDAO.findAll()) {
+        for (Requerimento r : rdao.findAll()) {
             modelo.addRow(new Object[]{
                 r.getId(),
                 r.getNome(),
@@ -246,10 +247,9 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        RequerimentoDAO requerimentoDAO = new RequerimentoDAO();
 
         Requerimento requerimento = new Requerimento(txtNome.getText(), Integer.parseInt(txtPrazo.getText()));
-        requerimentoDAO.persist(requerimento);
+        rdao.persist(requerimento);
 
         txtNome.setText("");
         txtPrazo.setText("");
@@ -261,11 +261,8 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
         if (JTRequerimento.getSelectedRow() != -1) {
-            Requerimento r = new Requerimento();
-            RequerimentoDAO rdao = new RequerimentoDAO();
 
-            r.setId(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString()));
-            rdao.remove(r);
+            rdao.removeById(Long.valueOf(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString())));
 
             txtNome.setText("");
             txtPrazo.setText("");
@@ -298,12 +295,10 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         // Verifica se uma linha foi selecionada
         if (JTRequerimento.getSelectedRow() != -1) {
             Requerimento r = new Requerimento();
-            RequerimentoDAO rdao = new RequerimentoDAO();
 
             r.setNome(txtNome.getText());
             r.setPrazo(Integer.parseInt(txtPrazo.getText()));
-            r.setId(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString()));
-            System.out.println(r.getId());
+            r.setId(Long.valueOf(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString())));
             rdao.merge(r);
 
             txtNome.setText("");
@@ -360,134 +355,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroRequerimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

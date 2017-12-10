@@ -26,7 +26,7 @@ public class Status implements Serializable{
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
     
     @Column(length = 20)
     private String status;
@@ -38,11 +38,11 @@ public class Status implements Serializable{
             cascade = CascadeType.ALL)
     private final List<AlunoRequerimento> aluno_requerimento = new ArrayList<AlunoRequerimento>();
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

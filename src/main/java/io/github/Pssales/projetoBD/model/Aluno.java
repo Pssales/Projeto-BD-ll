@@ -24,7 +24,7 @@ public class Aluno implements Serializable {
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
 
     /* @OneToOne
     private Matricula matricula;*/
@@ -39,11 +39,11 @@ public class Aluno implements Serializable {
   
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

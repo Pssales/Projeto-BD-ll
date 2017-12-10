@@ -26,7 +26,7 @@ public class Documento implements Serializable {
     @Id
     @GeneratedValue
     @Column
-    private Integer id;
+    private Long id;
 
     @Column(length = 15)
     private String numero;
@@ -37,11 +37,11 @@ public class Documento implements Serializable {
     @JoinColumn(name = "documentos", nullable = false)
     private Pessoa pessoa;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
