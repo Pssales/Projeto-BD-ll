@@ -28,6 +28,7 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
     ArrayList<Status> status = new ArrayList();
     ArrayList<Aluno> alunos = new ArrayList();
     ArrayList<Requerimento> requerimentos = new ArrayList();
+    ArrayList<AlunoRequerimento> ar = new ArrayList();
 
     public CadastroAlunoRequerimento() {
 
@@ -45,21 +46,32 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
             requerimentos.add(r);
             cbRequerimentos.addItem(r.getNome());
         }
-        for (Status s: sdao.findAll()) {
+        for (Status s : sdao.findAll()) {
             status.add(s);
             cbStatus.addItem(s.getStatus());
         }
-        DefaultTableModel modelo = (DefaultTableModel) jTAlunoDisciplina.getModel();
-        jTAlunoDisciplina.setRowSorter(new TableRowSorter(modelo));
+        DefaultTableModel modelo = (DefaultTableModel) jTAlunoRequerimento.getModel();
+        jTAlunoRequerimento.setRowSorter(new TableRowSorter(modelo));
 
         readJTable();
     }
 
     public void readJTable() {
 
-        DefaultTableModel modelo = (DefaultTableModel) jTAlunoDisciplina.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTAlunoRequerimento.getModel();
         modelo.setNumRows(0);
         AlunoRequerimentoDAO dao = new AlunoRequerimentoDAO();
+
+        for (AlunoRequerimento ad : dao.findAll()) {
+            ar.add(ad);
+            modelo.addRow(new Object[]{
+                ad.getAluno().getId(),
+                ad.getAluno().getNome(),
+                ad.getRequerimento().getId(),
+                ad.getRequerimento().getNome(),
+                ad.getStatus().getStatus()
+            });
+        }
 
     }
 
@@ -87,7 +99,7 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         cbStatus = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTAlunoDisciplina = new javax.swing.JTable();
+        jTAlunoRequerimento = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciar Disciplina");
@@ -178,8 +190,7 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(Status)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(100, 100, 100))
         );
         jPanel1Layout.setVerticalGroup(
@@ -204,7 +215,7 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
                 .addGap(37, 37, 37))
         );
 
-        jTAlunoDisciplina.setModel(new javax.swing.table.DefaultTableModel(
+        jTAlunoRequerimento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -220,18 +231,18 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTAlunoDisciplina.getTableHeader().setReorderingAllowed(false);
-        jTAlunoDisciplina.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTAlunoRequerimento.getTableHeader().setReorderingAllowed(false);
+        jTAlunoRequerimento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTAlunoDisciplinaMouseClicked(evt);
+                jTAlunoRequerimentoMouseClicked(evt);
             }
         });
-        jTAlunoDisciplina.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTAlunoRequerimento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTAlunoDisciplinaKeyReleased(evt);
+                jTAlunoRequerimentoKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(jTAlunoDisciplina);
+        jScrollPane1.setViewportView(jTAlunoRequerimento);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -270,21 +281,23 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTAlunoDisciplinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTAlunoDisciplinaMouseClicked
+    private void jTAlunoRequerimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTAlunoRequerimentoMouseClicked
         // preenche os campos com registos do banco de dados
 
-        if (jTAlunoDisciplina.getSelectedRow() != -1) {
-
-            cbAlunos.setActionCommand(jTAlunoDisciplina.getValueAt(jTAlunoDisciplina.getSelectedRow(), 1).toString());
-            cbRequerimentos.setActionCommand(jTAlunoDisciplina.getValueAt(jTAlunoDisciplina.getSelectedRow(), 2).toString());
+        if (jTAlunoRequerimento.getSelectedRow() != -1) {
+            int i = jTAlunoRequerimento.getSelectedRow();
+            System.out.println(ar.get(i).getAluno().getNome());
+            cbAlunos.setActionCommand(ar.get(i).getAluno().getNome());
+            cbRequerimentos.setActionCommand(ar.get(i).getRequerimento().getNome());
+            cbStatus.setActionCommand(ar.get(i).getStatus().getStatus());
 
         }
 
-    }//GEN-LAST:event_jTAlunoDisciplinaMouseClicked
+    }//GEN-LAST:event_jTAlunoRequerimentoMouseClicked
 
-    private void jTAlunoDisciplinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAlunoDisciplinaKeyReleased
+    private void jTAlunoRequerimentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAlunoRequerimentoKeyReleased
 
-    }//GEN-LAST:event_jTAlunoDisciplinaKeyReleased
+    }//GEN-LAST:event_jTAlunoRequerimentoKeyReleased
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -292,10 +305,11 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        if (jTAlunoDisciplina.getSelectedRow() != -1) {
-            CadastroAlunoRequerimento ad = new CadastroAlunoRequerimento();
+        if (jTAlunoRequerimento.getSelectedRow() != -1) {
             AlunoRequerimentoDAO dao = new AlunoRequerimentoDAO();
 
+            AlunoRequerimento alunoRequerimento = ar.get(jTAlunoRequerimento.getSelectedRow());
+            dao.remove(alunoRequerimento);
             readJTable();
         } else {
             JOptionPane.showMessageDialog(null, "Erro.");
@@ -359,7 +373,7 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CadastroAlunoRequerimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -383,9 +397,8 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTAlunoDisciplina;
+    private javax.swing.JTable jTAlunoRequerimento;
     private javax.swing.JTextField txtBuscaDesc;
     // End of variables declaration//GEN-END:variables
 
-   
 }

@@ -19,12 +19,12 @@ public class AlunoRequerimentoDAO extends DAO<AlunoRequerimento> {
     @Override
     public List<AlunoRequerimento> findAll() {
         return entityManager
-                .createQuery("FROM Aluno").getResultList();
+                .createQuery("FROM AlunoRequerimento").getResultList();
     }
 
     @Override
     public AlunoRequerimento getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.entityManager.find(AlunoRequerimento.class, id);
     }
 
     @Override

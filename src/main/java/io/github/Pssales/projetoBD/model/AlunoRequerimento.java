@@ -26,16 +26,16 @@ import javax.persistence.TemporalType;
 public class AlunoRequerimento implements Serializable{
 
     @Id
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "aluno_id", referencedColumnName = "id")
     private Aluno aluno;
 
     @Id
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "requerimento_id", referencedColumnName = "id")
     private Requerimento requerimento;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
     
