@@ -280,17 +280,14 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jTAlunoRequerimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTAlunoRequerimentoMouseClicked
         // preenche os campos com registos do banco de dados
-
-        if (jTAlunoRequerimento.getSelectedRow() != -1) {
+        if (jTAlunoRequerimento.getSelectedRow() > -1) {
             int i = jTAlunoRequerimento.getSelectedRow();
-            System.out.println(ar.get(i).getAluno().getNome());
-            cbAlunos.setActionCommand(ar.get(i).getAluno().getNome());
-            cbRequerimentos.setActionCommand(ar.get(i).getRequerimento().getNome());
+            cbAlunos.setSelectedItem(ar.get(i).getAluno().getNome());
+            cbRequerimentos.setSelectedItem(ar.get(i).getRequerimento().getNome());
             cbStatus.setActionCommand(ar.get(i).getStatus().getStatus());
-
         }
 
     }//GEN-LAST:event_jTAlunoRequerimentoMouseClicked
@@ -341,7 +338,16 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
     }//GEN-LAST:event_cbRequerimentosActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-        // TODO add your handling code here:
+        if (jTAlunoRequerimento.getSelectedRow() != -1) {
+            AlunoRequerimento alunor = ar.get(jTAlunoRequerimento.getSelectedRow());
+            AlunoRequerimentoDAO dao = new AlunoRequerimentoDAO();
+
+            alunor.setStatus(status.get(cbStatus.getSelectedIndex()));
+           
+            dao.merge(alunor);
+            
+            readJTable();
+        }
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void cbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStatusActionPerformed
