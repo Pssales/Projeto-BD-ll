@@ -5,11 +5,18 @@
  */
 package io.github.Pssales.projetoBD.views;
 
+import io.github.Pssales.projetoBD.controller.RequerimentoController;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import io.github.Pssales.projetoBD.dao.RequerimentoDAO;
 import io.github.Pssales.projetoBD.model.Requerimento;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -40,7 +47,6 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         //Cria uma nova tabela default
         DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
         modelo.setNumRows(0);
-
 
         for (Requerimento r : rdao.findAll()) {
             modelo.addRow(new Object[]{
@@ -80,6 +86,8 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         txtBusca = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        nome_erro = new javax.swing.JLabel();
+        prazo_erro = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTRequerimento = new javax.swing.JTable();
 
@@ -137,6 +145,8 @@ public class CadastroRequerimento extends javax.swing.JFrame {
             }
         });
 
+        nome_erro.setText(" ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -154,20 +164,28 @@ public class CadastroRequerimento extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nome_erro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(jButton4))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(prazo_erro, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -180,7 +198,11 @@ public class CadastroRequerimento extends javax.swing.JFrame {
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nome_erro)
+                    .addComponent(prazo_erro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar)
                     .addComponent(jButtonExcluir)
@@ -223,21 +245,21 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -247,28 +269,13 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-
-        Requerimento requerimento = new Requerimento(txtNome.getText(), Integer.parseInt(txtPrazo.getText()));
-        rdao.persist(requerimento);
-
-        txtNome.setText("");
-        txtPrazo.setText("");
-
-        writeJTable();
-
+        RequerimentoController controller = new RequerimentoController(this, "insert");
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
         if (JTRequerimento.getSelectedRow() != -1) {
-
-            rdao.removeById(Long.valueOf(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString())));
-
-            txtNome.setText("");
-            txtPrazo.setText("");
-
-            writeJTable();
-
+            RequerimentoController controller = new RequerimentoController(this, "delete");
         } else {
             JOptionPane.showMessageDialog(null, "Erro.");
         }
@@ -294,12 +301,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // Verifica se uma linha foi selecionada
         if (JTRequerimento.getSelectedRow() != -1) {
-            Requerimento r = new Requerimento();
-
-            r.setNome(txtNome.getText());
-            r.setPrazo(Integer.parseInt(txtPrazo.getText()));
-            r.setId(Long.valueOf(Integer.parseInt(JTRequerimento.getValueAt(JTRequerimento.getSelectedRow(), 0).toString())));
-            rdao.merge(r);
+            RequerimentoController controller = new RequerimentoController(this, "update");
 
             txtNome.setText("");
             txtPrazo.setText("");
@@ -355,7 +357,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroRequerimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -363,6 +365,103 @@ public class CadastroRequerimento extends javax.swing.JFrame {
             }
         });
     }
+
+    public RequerimentoDAO getRdao() {
+        return rdao;
+    }
+
+    public void setRdao(RequerimentoDAO rdao) {
+        this.rdao = rdao;
+    }
+
+    public JTable getJTRequerimento() {
+        return JTRequerimento;
+    }
+
+    public void setJTRequerimento(JTable JTRequerimento) {
+        this.JTRequerimento = JTRequerimento;
+    }
+
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public void setjButton1(JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
+
+    public JButton getjButton4() {
+        return jButton4;
+    }
+
+    public void setjButton4(JButton jButton4) {
+        this.jButton4 = jButton4;
+    }
+
+    public JButton getjButtonAtualizar() {
+        return jButtonAtualizar;
+    }
+
+    public void setjButtonAtualizar(JButton jButtonAtualizar) {
+        this.jButtonAtualizar = jButtonAtualizar;
+    }
+
+    public JButton getjButtonCadastrar() {
+        return jButtonCadastrar;
+    }
+
+    public void setjButtonCadastrar(JButton jButtonCadastrar) {
+        this.jButtonCadastrar = jButtonCadastrar;
+    }
+
+    public JButton getjButtonExcluir() {
+        return jButtonExcluir;
+    }
+
+    public void setjButtonExcluir(JButton jButtonExcluir) {
+        this.jButtonExcluir = jButtonExcluir;
+    }
+
+    public JTextField getTxtBusca() {
+        return txtBusca;
+    }
+
+    public void setTxtBusca(JTextField txtBusca) {
+        this.txtBusca = txtBusca;
+    }
+
+    public JTextField getTxtNome() {
+        return txtNome;
+    }
+
+    public void setTxtNome(JTextField txtNome) {
+        this.txtNome = txtNome;
+    }
+
+    public JTextField getTxtPrazo() {
+        return txtPrazo;
+    }
+
+    public void setTxtPrazo(JTextField txtPrazo) {
+        this.txtPrazo = txtPrazo;
+    }
+
+    public JLabel getPrazo_erro() {
+        return prazo_erro;
+    }
+
+    public void setPrazo_erro(JLabel jLabel3) {
+        this.prazo_erro = jLabel3;
+    }
+
+    public JLabel getNome_erro() {
+        return nome_erro;
+    }
+
+    public void setNome_erro(JLabel nome_erro) {
+        this.nome_erro = nome_erro;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTRequerimento;
@@ -375,6 +474,8 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nome_erro;
+    private javax.swing.JLabel prazo_erro;
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPrazo;
