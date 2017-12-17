@@ -40,10 +40,8 @@ public class RequerimentoController {
 
             this.tela.writeJTable();
         }
-
-        System.out.println("sdsdfsdf");
     }
-
+    
     public boolean validarNome() {
         if (this.tela.getTxtNome().getText().isEmpty()) {
             this.tela.getNome_erro().setText("Preencha o Campo NOME corretamente.");

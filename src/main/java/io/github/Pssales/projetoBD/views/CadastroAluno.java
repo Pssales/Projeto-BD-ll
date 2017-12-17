@@ -5,12 +5,16 @@
  */
 package io.github.Pssales.projetoBD.views;
 
+import io.github.Pssales.projetoBD.controller.AlunoController;
 import io.github.Pssales.projetoBD.dao.AlunoDAO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import io.github.Pssales.projetoBD.dao.SexoDAO;
 import io.github.Pssales.projetoBD.model.Aluno;
 import io.github.Pssales.projetoBD.model.Sexo;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -31,11 +35,11 @@ public class CadastroAluno extends javax.swing.JFrame {
             cdSexo.addItem(sexo.getSexo());
         }
         //Lê a tabela
-        readJTable();
+        writeJTable();
 
     }
 
-    public void readJTable() {
+    public void writeJTable() {
 
         DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
         modelo.setNumRows(0);
@@ -87,6 +91,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         cpf = new javax.swing.JFormattedTextField();
         tel = new javax.swing.JFormattedTextField();
         cel = new javax.swing.JFormattedTextField();
+        erro_nome = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTAlunos = new javax.swing.JTable();
 
@@ -204,7 +209,9 @@ public class CadastroAluno extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(23, 23, 23)
-                                .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(erro_nome)
+                                    .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonCadastrar)
@@ -246,7 +253,9 @@ public class CadastroAluno extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(cdSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(erro_nome)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
@@ -311,7 +320,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,26 +332,15 @@ public class CadastroAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        Aluno aluno = new Aluno();
-        aluno.setNome(txtNome.getText());
-        aDao.persist(aluno);
-        
-        readJTable();
+        AlunoController a = new AlunoController(this, "insert");
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //Verifica se foi selecionado algum registro
         if (jTAlunos.getSelectedRow() != -1) {
-            Aluno r = new Aluno();
+            AlunoController a = new AlunoController(this, "delete");
 
-            r.setId(Long.valueOf(Integer.parseInt(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 0).toString())));
-            aDao.removeById(Long.valueOf (r.getId()));
-            Aluno d = aDao.getById(r.getId());
-            
-            txtNome.setText("");
-
-            readJTable();
         } else {
             JOptionPane.showMessageDialog(null, "Erro.");
         }
@@ -365,15 +363,7 @@ public class CadastroAluno extends javax.swing.JFrame {
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // Verifica se uma linha foi selecionada
         if (jTAlunos.getSelectedRow() != -1) {
-            Aluno r = new Aluno();
-
-            r.setNome(txtNome.getText());
-            r.setId(Long.valueOf(Integer.parseInt(jTAlunos.getValueAt(jTAlunos.getSelectedRow(), 0).toString())));
-
-            aDao.merge(r);
-
-            txtNome.setText("");
-            readJTable();
+            AlunoController a = new AlunoController(this, "update");
         }
 
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
@@ -424,7 +414,7 @@ public class CadastroAluno extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -433,10 +423,36 @@ public class CadastroAluno extends javax.swing.JFrame {
         });
     }
 
+    public JTextField getTxtNome() {
+        return txtNome;
+    }
+
+    public void setTxtNome(JTextField txtNome) {
+        this.txtNome = txtNome;
+    }
+
+    public JTable getjTAlunos() {
+        return jTAlunos;
+    }
+
+    public void setjTAlunos(JTable jTAlunos) {
+        this.jTAlunos = jTAlunos;
+    }
+
+    public JLabel getErro_nome() {
+        return erro_nome;
+    }
+
+    public void setErro_nome(JLabel erro_nome) {
+        this.erro_nome = erro_nome;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Object> cdSexo;
     private javax.swing.JFormattedTextField cel;
     private javax.swing.JFormattedTextField cpf;
+    private javax.swing.JLabel erro_nome;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAtualizar;

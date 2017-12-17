@@ -37,15 +37,17 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         AlunoDAO adao = new AlunoDAO();
         RequerimentoDAO ddao = new RequerimentoDAO();
         StatusDAO sdao = new StatusDAO();
+        cbAlunos.addItem("Selecione");
         for (Aluno a : adao.findAll()) {
             alunos.add(a);
             cbAlunos.addItem(a.getNome());
         }
-
+        cbRequerimentos.addItem("Selecione");
         for (Requerimento r : ddao.findAll()) {
             requerimentos.add(r);
             cbRequerimentos.addItem(r.getNome());
         }
+        cbStatus.addItem("Selecione");
         for (Status s : sdao.findAll()) {
             status.add(s);
             cbStatus.addItem(s.getStatus());
@@ -319,9 +321,9 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         AlunoRequerimentoDAO dao = new AlunoRequerimentoDAO();
         AlunoDAO a = new AlunoDAO();
         System.out.println(cbAlunos.getSelectedIndex());
-        ad.setAluno(alunos.get(cbAlunos.getSelectedIndex()));
-        ad.setRequerimento(requerimentos.get(cbRequerimentos.getSelectedIndex()));
-        ad.setStatus(status.get(cbStatus.getSelectedIndex()));
+        ad.setAluno(alunos.get(cbAlunos.getSelectedIndex()-1));
+        ad.setRequerimento(requerimentos.get(cbRequerimentos.getSelectedIndex()-1));
+        ad.setStatus(status.get(cbStatus.getSelectedIndex()-1));
         System.out.println(ad.getAluno().getNome());
         dao.persist(ad);
         readJTable();
@@ -342,7 +344,7 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
             AlunoRequerimento alunor = ar.get(jTAlunoRequerimento.getSelectedRow());
             AlunoRequerimentoDAO dao = new AlunoRequerimentoDAO();
 
-            alunor.setStatus(status.get(cbStatus.getSelectedIndex()));
+            alunor.setStatus(status.get(cbStatus.getSelectedIndex()-1));
            
             dao.merge(alunor);
             
