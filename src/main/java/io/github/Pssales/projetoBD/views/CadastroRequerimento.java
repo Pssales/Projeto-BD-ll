@@ -58,11 +58,17 @@ public class CadastroRequerimento extends javax.swing.JFrame {
     }
 
     //Preenche a tabela com os dados do banco que atendem o parametro passado
-    public void readJTableName(String name) {
+    public void writeJTableName(String name) {
 
         //Cria uma tabela default
         DefaultTableModel modelo = (DefaultTableModel) JTRequerimento.getModel();
         modelo.setNumRows(0);
+        for (Requerimento r : rdao.byName(name)) {
+            modelo.addRow(new Object[]{
+                r.getId(),
+                r.getNome(),
+                r.getPrazo(),});
+        }
 
     }
 
@@ -313,7 +319,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //Faz a busca pelo nome passado
-        readJTableName(txtBusca.getText());
+        writeJTableName(txtBusca.getText());
 
     }//GEN-LAST:event_jButton4ActionPerformed
 

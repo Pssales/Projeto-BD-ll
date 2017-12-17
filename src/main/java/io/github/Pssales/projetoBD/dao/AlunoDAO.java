@@ -40,4 +40,9 @@ public class AlunoDAO extends DAO<Aluno>{
                 .createQuery("FROM Aluno").getResultList();
     }
     
+    public List<Aluno> byName(String name){
+        return entityManager
+                .createQuery("FROM Aluno where nome like '%"+name+"%'").getResultList();
+    }
+    
 }

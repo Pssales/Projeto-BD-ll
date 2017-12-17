@@ -30,4 +30,9 @@ public class RequerimentoDAO extends DAO<Requerimento> {
         return entityManager
                 .createQuery("FROM Requerimento").getResultList();
     }
+    
+    public List<Requerimento> byName(String name){
+        return entityManager
+                .createQuery("FROM Requerimento where nome like '%"+name+"%'").getResultList();
+    }
 }

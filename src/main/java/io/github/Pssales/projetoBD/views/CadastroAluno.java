@@ -58,6 +58,11 @@ public class CadastroAluno extends javax.swing.JFrame {
         //Cria uma tabela default
         DefaultTableModel modelo = (DefaultTableModel) jTAlunos.getModel();
         modelo.setNumRows(0);
+        for (Aluno r : aDao.byName(name)) {
+            modelo.addRow(new Object[]{
+                r.getId(),
+                r.getNome(),});
+        }
 
     }
 
