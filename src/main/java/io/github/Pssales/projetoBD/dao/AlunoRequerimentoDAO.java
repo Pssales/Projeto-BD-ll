@@ -29,7 +29,17 @@ public class AlunoRequerimentoDAO extends DAO<AlunoRequerimento> {
 
     @Override
     public boolean removeById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = true;
+
+        try {
+            AlunoRequerimento ar = this.getById(id);
+            super.remove(ar);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+
+        return result;
     }
 
 }

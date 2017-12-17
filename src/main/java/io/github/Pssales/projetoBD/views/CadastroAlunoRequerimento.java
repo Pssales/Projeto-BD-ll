@@ -5,6 +5,7 @@
  */
 package io.github.Pssales.projetoBD.views;
 
+import io.github.Pssales.projetoBD.controller.AlunoRequerimentoController;
 import io.github.Pssales.projetoBD.dao.AlunoDAO;
 import io.github.Pssales.projetoBD.dao.AlunoRequerimentoDAO;
 import io.github.Pssales.projetoBD.dao.RequerimentoDAO;
@@ -13,9 +14,13 @@ import io.github.Pssales.projetoBD.model.Aluno;
 import io.github.Pssales.projetoBD.model.AlunoRequerimento;
 import io.github.Pssales.projetoBD.model.Requerimento;
 import io.github.Pssales.projetoBD.model.Status;
+
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -55,10 +60,10 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jTAlunoRequerimento.getModel();
         jTAlunoRequerimento.setRowSorter(new TableRowSorter(modelo));
 
-        readJTable();
+        writeJTable();
     }
 
-    public void readJTable() {
+    public void writeJTable() {
 
         DefaultTableModel modelo = (DefaultTableModel) jTAlunoRequerimento.getModel();
         modelo.setNumRows(0);
@@ -67,9 +72,8 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         for (AlunoRequerimento ad : dao.findAll()) {
             ar.add(ad);
             modelo.addRow(new Object[]{
-                ad.getAluno().getId(),
+                ad.getId(),
                 ad.getAluno().getNome(),
-                ad.getRequerimento().getId(),
                 ad.getRequerimento().getNome(),
                 ad.getStatus().getStatus()
             });
@@ -99,6 +103,7 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         jButtonAtualizar = new javax.swing.JButton();
         Status = new javax.swing.JLabel();
         cbStatus = new javax.swing.JComboBox<>();
+        erro = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTAlunoRequerimento = new javax.swing.JTable();
@@ -168,7 +173,7 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -182,17 +187,21 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbRequerimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Status)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(erro)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cbRequerimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Status)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(100, 100, 100))
         );
         jPanel1Layout.setVerticalGroup(
@@ -207,7 +216,9 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
                     .addComponent(cbRequerimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Status)
                     .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(erro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar)
                     .addComponent(jButtonExcluir)
@@ -222,11 +233,11 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
 
             },
             new String [] {
-                "idAluno", "Nome Aluno", "idRequerimento", "Nome Requerimento", "Status"
+                "Id", "Nome Aluno", "Nome Requerimento", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -282,14 +293,14 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void jTAlunoRequerimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTAlunoRequerimentoMouseClicked
         // preenche os campos com registos do banco de dados
         if (jTAlunoRequerimento.getSelectedRow() > -1) {
             int i = jTAlunoRequerimento.getSelectedRow();
             cbAlunos.setSelectedItem(ar.get(i).getAluno().getNome());
             cbRequerimentos.setSelectedItem(ar.get(i).getRequerimento().getNome());
-            cbStatus.setActionCommand(ar.get(i).getStatus().getStatus());
+            cbStatus.setSelectedItem(ar.get(i).getStatus().getStatus());
         }
 
     }//GEN-LAST:event_jTAlunoRequerimentoMouseClicked
@@ -305,28 +316,14 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         if (jTAlunoRequerimento.getSelectedRow() != -1) {
-            AlunoRequerimentoDAO dao = new AlunoRequerimentoDAO();
-
-            AlunoRequerimento alunoRequerimento = ar.get(jTAlunoRequerimento.getSelectedRow());
-            dao.remove(alunoRequerimento);
-            readJTable();
+            AlunoRequerimentoController arc = new AlunoRequerimentoController(this, "delete");
         } else {
-            JOptionPane.showMessageDialog(null, "Erro.");
+            JOptionPane.showMessageDialog(null, "Selecione um registro da tabela.");
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        // TODO add your handling code here:
-        AlunoRequerimento ad = new AlunoRequerimento();
-        AlunoRequerimentoDAO dao = new AlunoRequerimentoDAO();
-        AlunoDAO a = new AlunoDAO();
-        System.out.println(cbAlunos.getSelectedIndex());
-        ad.setAluno(alunos.get(cbAlunos.getSelectedIndex()-1));
-        ad.setRequerimento(requerimentos.get(cbRequerimentos.getSelectedIndex()-1));
-        ad.setStatus(status.get(cbStatus.getSelectedIndex()-1));
-        System.out.println(ad.getAluno().getNome());
-        dao.persist(ad);
-        readJTable();
+        AlunoRequerimentoController arc = new AlunoRequerimentoController(this, "insert");
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -341,14 +338,9 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         if (jTAlunoRequerimento.getSelectedRow() != -1) {
-            AlunoRequerimento alunor = ar.get(jTAlunoRequerimento.getSelectedRow());
-            AlunoRequerimentoDAO dao = new AlunoRequerimentoDAO();
-
-            alunor.setStatus(status.get(cbStatus.getSelectedIndex()-1));
-           
-            dao.merge(alunor);
-            
-            readJTable();
+            AlunoRequerimentoController arc = new AlunoRequerimentoController(this, "update");
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um registro da tabela.");
         }
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
@@ -390,11 +382,86 @@ public class CadastroAlunoRequerimento extends javax.swing.JFrame {
         });
     }
 
+    public ArrayList<Status> getStatus() {
+        return status;
+    }
+
+    public void setStatus(ArrayList<Status> status) {
+        this.status = status;
+    }
+
+    public ArrayList<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(ArrayList<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
+    public ArrayList<Requerimento> getRequerimentos() {
+        return requerimentos;
+    }
+
+    public void setRequerimentos(ArrayList<Requerimento> requerimentos) {
+        this.requerimentos = requerimentos;
+    }
+
+    public ArrayList<AlunoRequerimento> getAr() {
+        return ar;
+    }
+
+    public void setAr(ArrayList<AlunoRequerimento> ar) {
+        this.ar = ar;
+    }
+
+    public JComboBox<Object> getCbAlunos() {
+        return cbAlunos;
+    }
+
+    public void setCbAlunos(JComboBox<Object> cbAlunos) {
+        this.cbAlunos = cbAlunos;
+    }
+
+    public JComboBox<Object> getCbRequerimentos() {
+        return cbRequerimentos;
+    }
+
+    public void setCbRequerimentos(JComboBox<Object> cbRequerimentos) {
+        this.cbRequerimentos = cbRequerimentos;
+    }
+
+    public JComboBox<Object> getCbStatus() {
+        return cbStatus;
+    }
+
+    public void setCbStatus(JComboBox<Object> cbStatus) {
+        this.cbStatus = cbStatus;
+    }
+
+    public JTable getjTAlunoRequerimento() {
+        return jTAlunoRequerimento;
+    }
+
+    public void setjTAlunoRequerimento(JTable jTAlunoRequerimento) {
+        this.jTAlunoRequerimento = jTAlunoRequerimento;
+    }
+
+    public JLabel getErro() {
+        return erro;
+    }
+
+    public void setErro(JLabel erro) {
+        this.erro = erro;
+    }
+
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Status;
     private javax.swing.JComboBox<Object> cbAlunos;
     private javax.swing.JComboBox<Object> cbRequerimentos;
     private javax.swing.JComboBox<Object> cbStatus;
+    private javax.swing.JLabel erro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAtualizar;
