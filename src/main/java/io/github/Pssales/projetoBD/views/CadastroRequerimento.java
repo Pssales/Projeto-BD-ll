@@ -98,7 +98,7 @@ public class CadastroRequerimento extends javax.swing.JFrame {
         JTRequerimento = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Gerenciar Aluno");
+        setTitle("Gerenciar Requerimento");
         setResizable(false);
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {

@@ -100,8 +100,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_GerenciarAlunoActionPerformed
 
     private void SolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SolicitacoesActionPerformed
-       CadastroAlunoRequerimento ar = new CadastroAlunoRequerimento();
-       ar.setVisible(true);
+       CadastroAlunoRequerimento car = new CadastroAlunoRequerimento();
+       car.setVisible(true);
        dispose();
     }//GEN-LAST:event_SolicitacoesActionPerformed
 
