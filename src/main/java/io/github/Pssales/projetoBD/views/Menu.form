@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Menu"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -28,10 +29,8 @@
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="Solicitacoes" pref="156" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="GerenciarAluno" max="32767" attributes="0"/>
-                      <Component id="Requerimento" pref="156" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="GerenciarAluno" max="32767" attributes="0"/>
+                  <Component id="Requerimento" pref="156" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="85" max="32767" attributes="0"/>
           </Group>
